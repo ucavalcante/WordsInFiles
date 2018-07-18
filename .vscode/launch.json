@@ -10,7 +10,14 @@
             "request": "launch",
             "preLaunchTask": "build",
             "program": "${workspaceFolder}/bin/Debug/netcoreapp2.1/WordsInFiles.dll",
-            "args": [],
+            "args": [
+                "-i",
+                "~\\Source\\repos\\WordsInFiles\\Resources\\ListCpfs.txt",
+                "-d",
+                "~\\Logs\\Logs 2018-06-11",
+                "-o",
+                "~\\Source\\repos\\WordsInFiles\\Resources\\Saida.txt"
+            ],
             "cwd": "${workspaceFolder}",
             "console": "internalConsole",
             "stopAtEntry": false,
