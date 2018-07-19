@@ -31,11 +31,11 @@
             "program": "${workspaceFolder}/bin/Debug/netcoreapp2.1/WordsInFiles.dll",
             "args": [
                 "-i",
-                "~\\Source\\repos\\WordsInFiles\\Resources\\ListCpfs.txt",
+                "~\\Source\\repos\\WordsInFiles\\Console\\Resources\\ListCpfs.txt",
                 "-d",
                 "~\\Logs\\Logs 2018-06-11",
                 "-o",
-                "~\\Source\\repos\\WordsInFiles\\Resources\\Out.log"
+                "~\\Source\\repos\\WordsInFiles\\Console\\Resources\\Out.log"
             ],
             "cwd": "${workspaceFolder}",
             "console": "internalConsole",
