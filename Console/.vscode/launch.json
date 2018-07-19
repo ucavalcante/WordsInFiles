@@ -12,9 +12,28 @@
             "program": "${workspaceFolder}/bin/Debug/netcoreapp2.1/WordsInFiles.dll",
             "args": [
                 "-i",
-                "~\\Source\\repos\\WordsInFiles\\Resources\\Words.txt",
+                "~\\Source\\repos\\WordsInFiles\\Console\\Resources\\Words.txt",
                 "-d",
-                "~\\Source\\repos\\WordsInFiles\\Resources\\TestDir",
+                "~\\Source\\repos\\WordsInFiles\\Console\\Resources\\TestDir",
+                "-o",
+                "~\\Source\\repos\\WordsInFiles\\Console\\Resources\\Out.log"
+            ],
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopAtEntry": false,
+            "internalConsoleOptions": "openOnSessionStart"
+        },
+        {
+            "name": ".NET Core Launch (Alternate)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/bin/Debug/netcoreapp2.1/WordsInFiles.dll",
+            "args": [
+                "-i",
+                "~\\Source\\repos\\WordsInFiles\\Resources\\ListCpfs.txt",
+                "-d",
+                "~\\Logs\\Logs 2018-06-11",
                 "-o",
                 "~\\Source\\repos\\WordsInFiles\\Resources\\Out.log"
             ],
