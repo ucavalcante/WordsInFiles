@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
@@ -37,8 +38,10 @@ namespace WordsInFiles
             FileInfo fileInfoIn = new FileInfo(inFile);
             if (fileInfoIn.Exists)
             {
+                List<Relation> MyList = new List<Relation>();
                 using (StreamReader sr = new StreamReader(fileInfoIn.FullName))
                 {
+                    
                     var line = "";
                     while ((line = sr.ReadLine()) != null)
                     {
@@ -48,14 +51,21 @@ namespace WordsInFiles
                             DirectoryInfo directoryInfoDirectoryForRead = new DirectoryInfo(directoryForRead);
                             if (directoryInfoDirectoryForRead.Exists)
                             {
+                                
                                 foreach (var files in directoryInfoDirectoryForRead.GetFiles())
                                 {
-                                    ProcessFile(sb, line, files);
+                                    MyList.Add(new Relation(){SearchedWord = line, FileForSearch = files});
                                 }
                             }
                         }
                     }
                 }
+
+                foreach (Relation item in MyList)
+                {
+                    ProcessFile(sb, item.SearchedWord, item.FileForSearch);
+                }
+                 
             }
 
             return sb;
