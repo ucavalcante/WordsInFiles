@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using System.Threading;
 
 namespace WordsInFiles
 {
@@ -41,7 +42,7 @@ namespace WordsInFiles
                 List<Relation> MyList = new List<Relation>();
                 using (StreamReader sr = new StreamReader(fileInfoIn.FullName))
                 {
-                    
+
                     var line = "";
                     while ((line = sr.ReadLine()) != null)
                     {
@@ -51,10 +52,10 @@ namespace WordsInFiles
                             DirectoryInfo directoryInfoDirectoryForRead = new DirectoryInfo(directoryForRead);
                             if (directoryInfoDirectoryForRead.Exists)
                             {
-                                
+
                                 foreach (var files in directoryInfoDirectoryForRead.GetFiles())
                                 {
-                                    MyList.Add(new Relation(){SearchedWord = line, FileForSearch = files});
+                                    MyList.Add(new Relation() { mySB = sb, SearchedWord = line, FileForSearch = files });
                                 }
                             }
                         }
@@ -63,14 +64,29 @@ namespace WordsInFiles
 
                 foreach (Relation item in MyList)
                 {
-                    ProcessFile(sb, item.SearchedWord, item.FileForSearch);
+                    bool MultiT = true;
+                    if (MultiT)
+                    {
+                        Thread t = new Thread(ProcessFile);
+                        t.Start(item);
+                    }
+                    else
+                    {
+                        ProcessFile(sb, item.SearchedWord, item.FileForSearch);
+                    }
+
                 }
-                 
+
             }
 
             return sb;
         }
 
+        private static void ProcessFile(object obj)
+        {
+            Relation r = (Relation)obj;
+            ProcessFile(r.mySB, r.SearchedWord, r.FileForSearch);
+        }
         private static void ProcessFile(StringBuilder sb, string line, FileInfo files)
         {
             Console.WriteLine($">>File for search:{files.Name}");
